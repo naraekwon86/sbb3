@@ -1,12 +1,14 @@
 package com.ll.sbb3.question;
 
 import com.ll.sbb3.answer.Answer;
+import com.ll.sbb3.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,5 +24,10 @@ public class Question {
     private LocalDateTime createDate;
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+    @ManyToOne
+    private SiteUser author;
+    private LocalDateTime modifyDate;
+    @ManyToMany
+    Set<SiteUser> voter;
 
 }
